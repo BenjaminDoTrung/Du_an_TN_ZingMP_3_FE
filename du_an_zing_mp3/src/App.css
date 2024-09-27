@@ -1,5 +1,4 @@
 
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 * {
@@ -965,7 +964,7 @@ html {
   height : 90%;
   display : flex;
   gap : 24px;
-  
+
 }
 .rank_song{
   width : 40%;
@@ -1609,7 +1608,213 @@ span.from {
   margin-bottom : 5px;
   color : #FFFFFF;
 }
+.button-setting{
+  position: relative;
+}
+.button-setting:hover .menu_setting{
+  display: block;
+}
 .week_title h1{
   font-size : 35px;
 }
+.formupdate {
+  border: 1px solid black;
+}
+.menu-settings.setting-header {
+  width: 300px;
+  line-height: normal;
+}
+.menu-settings.header-dropdown {
+  top: 50px;
+  right: -2px;
+  padding: 6px;
+}
+.user-setting .menu-settings {
+  width: 350px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+.menu-settings {
+  background-color: var(--primary-bg);
+  border-radius: 8px;
+  position: absolute;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.2);
+  width: 240px;
+  z-index: 101;
+}
+div, p {
+  word-break: break-word;
+}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+user agent stylesheet
+div {
+  display: block;
+}
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-family: Inter,sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--layout-bg);
+  font-weight: 400;
+  -ms-scroll-chaining: none;
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+[data-theme=purple], [data-theme=red] {
+  --chart-box-bg-alpha: hsla(0,0%,100%,0.05);
+}
+[data-theme=purple] {
+  --layout-bg: #170f23;
+  --layout-header-bg: rgba(23,15,35,0.8);
+  --player-bg: #130c1c;
+  --sidebar-popup-bg: #2a213a;
+  --primary-bg: #34224f;
+  --gradient-latest-section-artist: linear-gradient(286.07deg,rgba(23,15,35,0.95) 55.21%,rgba(23,15,35,0.6));
+  --alpha-layout-bg: rgba(41,21,71,0.8);
+  --queue-player-popup-bg: #120822;
+  --blur-queue-bg: rgba(30,21,47,0.9019607843137255);
+  --purple-primary: #9b4de0;
+  --link-text-hover: #c273ed;
+  --chart-bg-img-alpha: rgba(32,19,53,0.9);
+}
+[data-theme=blue-light], [data-theme=blue], [data-theme=brown], [data-theme=green], [data-theme=pink], [data-theme=purple], [data-theme=red] {
+  --text-placeholder: #dadada;
+  --navigation-text: #dadada;
+  --sticky-header-box-shadow: rgba(0,0,0,0.1);
+  --portal-menu-box-shadow: rgba(0,0,0,0.2);
+}
+[data-theme=blue-light], [data-theme=blue], [data-theme=brown], [data-theme=dark], [data-theme=green], [data-theme=pink], [data-theme=purple], [data-theme=red] {
+  --layout-bg: #1e1e1e;
+  --layout-header-bg: rgba(30,30,30,0.8);
+  --sidebar-bg: hsla(0,0%,100%,0.05);
+  --sidebar-popup-bg: #292929;
+  --alpha-bg: hsla(0,0%,100%,0.1);
+  --contrast-bg: rgba(254,255,255,0.4);
+  --contrast-color: rgba(20,20,20,0.8);
+  --primary-bg: #333;
+  --gradient-latest-section-artist: linear-gradient(286.07deg,rgba(30,30,30,0.95) 55.21%,rgba(30,30,30,0.6));
+  --loading-bg: hsla(0,0%,100%,0.1);
+  --loading-bg-animation: hsla(0,0%,100%,0.1);
+  --scroll-thumb-bg: hsla(0,0%,100%,0.3);
+  --box-item-bg: hsla(0,0%,100%,0.1);
+  --box-hot-item-bg: rgba(254,255,255,0.05);
+  --box-hot-item-bg-hover: rgba(254,255,255,0.1);
+  --alpha-layout-bg: rgba(12,3,3,0.8);
+  --artist-layout-bg: var(--alpha-layout-bg);
+  --tab-active-bg: hsla(0,0%,100%,0.3);
+  --queue-player-popup-bg: #2d2f32;
+  --kara-btn-bg: hsla(0,0%,100%,0.1);
+  --player-bg: #181818;
+  --progressbar-player-bg: hsla(0,0%,100%,0.3);
+  --progressbar-active-bg: #fff;
+  --select-bg: hsla(0,0%,100%,0.15);
+  --text-primary: #fff;
+  --text-secondary: hsla(0,0%,100%,0.5);
+  --purple-primary: #9b4de0;
+  --link-text-hover: #c273ed;
+  --text-item-hover: #fff;
+  --player-text: #fff;
+  --text-muted: rgba(254,255,255,0.6);
+  --search-text: #eee;
+  --text-placeholder: #757575;
+  --setting-icon-text: #d8d8d8;
+  --navigation-text: #a0a0a0;
+  --song-item-action: hsla(0,0%,100%,0.5);
+  --border-primary: hsla(0,0%,100%,0.1);
+  --border-secondary: hsla(0,0%,100%,0.05);
+  --border-box: hsla(0,0%,100%,0.2);
+  --spotlight-item: #130223;
+  --border-player: hsla(0,0%,100%,0.1);
+  --main-box-shadow: rgba(66,66,66,0.4);
+  --new-release-box-shadow: none;
+  --sticky-header-box-shadow: rgba(0,0,0,0.2);
+  --notify-box-shadow: rgba(0,0,0,0.6);
+  --portal-menu-box-shadow: rgba(0,0,0,0.7);
+  --main-text-stroke: #fff;
+  --image-queue-loader: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/bg-empty-dark.svg);
+  --image-queue-video: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/dark-queue-playing-video.svg);
+  --playing-mix-icon: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/icon-playing.gif);
+}
+@media screen and (max-width: 1023px)
+:root, [data-theme=green-light], [data-theme=light], [data-theme=pink-light], [data-theme=yellow] {
+  --padding-section: 29px;
+}
+:root, [data-theme=green-light], [data-theme=light], [data-theme=pink-light], [data-theme=yellow] {
+  --background-tooltip: #e8e8e8;
+  --plus-package: #8e4cff;
+  --premium-package: #dca519;
+  --white: #fff;
+  --black: #32323d;
+  --yellow: #f8e71c;
+  --blue: #4a90e2;
+  --green: #50e3c2;
+  --red: #e35050;
+  --gray: #dbdbdb;
+  --dark-alpha-10: rgba(0,0,0,0.1);
+  --dark-alpha-50: rgba(0,0,0,0.5);
+  --dark-alpha-80: rgba(0,0,0,0.8);
+  --hover-tooltip-opacity: hsla(0,0%,100%,0.3);
+  --primary-bg: #fff;
+  --layout-bg: #fff;
+  --layout-header-bg: hsla(0,0%,100%,0.8);
+  --sidebar-bg: rgba(0,0,0,0.05);
+  --sidebar-popup-bg: #f2f2f2;
+  --alpha-bg: rgba(0,0,0,0.05);
+  --contrast-bg: rgba(20,20,20,0.4);
+  --contrast-color: rgba(254,255,255,0.8);
+  --gradient-latest-section-artist: linear-gradient(286.07deg,hsla(0,0%,100%,0.95) 55.21%,hsla(0,0%,100%,0.6));
+  --loading-bg: rgba(0,0,0,0.05);
+  --loading-bg-animation: #f5f5f5;
+  --scroll-thumb-bg: rgba(0,0,0,0.1);
+  --box-item-bg: #fff;
+  --artist-layout-bg: hsla(0,0%,100%,0.8);
+  --alpha-layout-bg: rgba(12,3,3,0.8);
+  --tab-active-bg: #fff;
+  --queue-player-popup-bg: #fff;
+  --progressbar-active-bg: var(--purple-primary);
+  --progressbar-player-bg: rgba(0,0,0,0.1);
+  --kara-btn-bg: hsla(0,0%,100%,0.1);
+  --player-bg: #fff;
+  --select-bg: rgba(0,0,0,0.15);
+  --text-primary: #32323d;
+  --text-secondary: rgba(0,0,0,0.6);
+  --purple-primary: #8d22c3;
+  --text-item-hover: #8d22c3;
+  --link-text-hover: #8d22c3;
+  --player-text: #32323d;
+  --text-muted: rgba(20,20,20,0.4);
+  --search-text: #282828;
+  --text-placeholder: #757575;
+  --setting-icon-text: #495057;
+  --navigation-text: #32323d;
+  --song-item-action: rgba(50,50,61,0.5);
+  --border-primary: rgba(0,0,0,0.1);
+  --border-secondary: rgba(0,0,0,0.05);
+}
+html {
+  font-size: 16px;
+}
+body ::-webkit-scrollbar {
+  width: 6px;
+}
+body ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.5);
+}
+body ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset #fff;
+  border-radius: 4px;
+}
+
 

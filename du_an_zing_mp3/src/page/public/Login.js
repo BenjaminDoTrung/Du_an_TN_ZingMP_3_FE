@@ -1,91 +1,133 @@
-import {Field, Formik, Form} from "formik";
-import {MDBBtn, MDBCheckbox, MDBContainer, MDBIcon, MDBInput} from "mdb-react-ui-kit";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {Field, Form, Formik} from "formik";
 import axios from "axios";
-import Header from "../../components/Header";
+import {toast} from "react-toastify";
+import "../../modalLogin.css"
+import React from "react";
 
-
-function Login() {
-    const navigate = useNavigate()
-
-    return (
-        <>
-            <div className={'h-[70px] px-[59px] flex items-center'}>
-                <Header/>
-            </div>
-        <Formik initialValues={{
-            userName: "",
-            password: "",
-        }}
-                onSubmit={(values) => {
-                    loginAcc(values)}
-                }>
-            <Form>
-                <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-                    <div><h1>Login</h1></div>
-                    <div className="form-outline mb-4">
-                        <Field class="form-control" name={'userName'} label='Email address' id='form1' type='text'/>
-                    </div>
-                    <div className="form-outline mb-4">
-                        <Field class="form-control" name={'password'} label='Password' id='form2' type='password'/>
-                    </div>
-                    <div className="d-flex justify-content-between mx-3 mb-4">
-                        <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me'/>
-                        <a href="/UpdatePass">Forgot password?</a>
-                    </div>
-                    <button className="mb-4">Sign in</button>
-                    <div className="text-center">
-                        <p>Not a member? <button><Link to={'/register'} type={"button"} className={"btn btn-default"}
-                                                       data-dismiss={"modal"} value={"Cancel"}>Register</Link></button></p>
-                        <p>or sign up with:</p>
-                        <div className='d-flex justify-content-between mx-auto' style={{width: '40%'}}>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{color: '#1266f1'}}><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/login-google&response_type=code
-    &client_id=80724656105-fg2ndheoujm7c7dd4ob1i9mq3ebdbjhb.apps.googleusercontent.com&approval_prompt=force">Login With Gmail</a>
-                                <MDBIcon fab icon='facebook-f' size="sm"/>
-                            </MDBBtn>
-
-                            <MDBBtn tag='a' color='none' className='m-1' style={{color: '#1266f1'}}>
-                                <MDBIcon fab icon='twitter' size="sm"/>
-                            </MDBBtn>
-
-                            <MDBBtn tag='a' color='none' className='m-1' style={{color: '#1266f1'}}>
-                                <MDBIcon fab icon='google' size="sm"/>
-                            </MDBBtn>
-
-                            <MDBBtn tag='a' color='none' className='m-1' style={{color: '#1266f1'}}>
-                                <MDBIcon fab icon='github' size="sm"/>
-                            </MDBBtn>
-
-                        </div>
-                    </div>
-                </MDBContainer>
-            </Form>
-        </Formik>
-        </>
-    )
-
-    function loginAcc(value) {
-        try {
-            console.log(value)
-            axios.post('http://localhost:8080/users/login',value).then((res) => {
+export default function Login() {
+    let navigate = useNavigate();
+    function setAcc(value) {
+        axios.post('http://localhost:8080/users/login', value).then((res) => {
+            console.log(res.data);
+            if (res.data === false){
+                alert("Tài khoản của bạn đã bị khóa");
+            }
+            else{
                 localStorage.setItem("idUser", res.data.id)
                 localStorage.setItem("user", res.data.username)
-                alert("Đăng nhập thành công")
+                localStorage.setItem("user_img", res.data.url_img)
+                localStorage.setItem("role", res.data.roles[0].authority)
+                console.log("role:",localStorage.getItem("role"))
                 navigate("/")
-            }).catch(()=> {
-                    alert('Không thành công')
-                    navigate("/login")
-                }
-            )
-        }catch (e) {
-        }
+                toast.success("Đăng nhập thành công", {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                })
+            }
+        }).catch(() => {
+            toast.error('Thông tin sai')
+            navigate("/login")
+        })
     }
+    function next(){
+        navigate("/register")
+    }
+    return (
+        <>
+            <Formik initialValues={{
+                userName: "",
+                password: ""
+            }}
+                    enableReinitialize={true}
+                    onSubmit={(value) => {
+                        setAcc(value)
+                    }}>
+                <Form>
+                    <div className="modal" id="modal">
+                        <div className="modal_overlay">
+                        </div>
+                        <div className="modal_body">
+                            <div className="modal_inner">
+                                <div className="auth_form">
+                                    <div className="auth_form_header">
+                                        <div style={{textAlign: "center"}}>
+                                            <div className="limiter">
+                                                <div className="container-login100">
+                                                    <div className="wrap-login100">
+                                                        <div className="login100-pic js-tilt">
+                                                            <img src="images/img-01.png" alt="IMG"/>
+                                                        </div>
+                                                        <div className="login100-form validate-form">
+					<span className="login100-form-title">
+						Đăng nhập Zingmp3
+					</span>
+                                                            <div className="wrap-input100 validate-input"
+                                                                 data-validate="Valid email is required: ex@abc.xyz">
+                                                                <Field className="input100" type="text" name="userName"
+                                                                       placeholder="Tên đăng nhập"/>
+                                                                <span className="focus-input100"></span>
+                                                                <span className="symbol-input100">
+							<i className="fa fa-solid fa-user" aria-hidden="true"></i>
+						</span>
+                                                            </div>
+                                                            <div className="wrap-input100 validate-input"
+                                                                 data-validate="Password is required">
+                                                                <Field className="input100" type="password"
+                                                                       name="password" placeholder="Mật khẩu"/>
+                                                                <span className="focus-input100"></span>
+                                                                <span className="symbol-input100">
+							<i className="fa fa-lock" aria-hidden="true"></i>
+						</span>
+                                                            </div>
 
-    function check() {
-        return (
-            localStorage.getItem('user')
-        );
+                                                            <div className="container-login100-form-btn">
+                                                                <button className="login100-form-btn">
+                                                                    Đăng nhập
+                                                                </button>
+                                                            </div>
+
+                        {/*                                    <div className="text-center p-t-12">*/}
+						{/*<span className="txt1">*/}
+						{/*	Forgot*/}
+						{/*</span>*/}
+                        {/*                                        <a className="txt2" href="#">*/}
+                        {/*                                            Username / Password?*/}
+                        {/*                                        </a>*/}
+                        {/*                                    </div>*/}
+                                                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/login-google&response_type=code
+    &client_id=80724656105-fg2ndheoujm7c7dd4ob1i9mq3ebdbjhb.apps.googleusercontent.com&approval_prompt=force">Login With Gmail</a>
+                                                            <div>
+                                                                <button onClick={next} className="txt2">
+                                                                    Tạo tài khoản mới
+                                                                    <i className="fa fa-long-arrow-right m-l-5"
+                                                                       aria-hidden="true"></i>
+                                                                </button>
+                                                                <div>
+                                                                    <button onClick={back} className="txt2">
+
+                                                                        <i className="fa fa-long-arrow-left m-l-5"
+                                                                        ></i>
+                                                                        Quay lại
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Form>
+            </Formik>
+        </>
+    )
+    function back(){
+        navigate("/")
     }
 }
 
-export default Login;
+

@@ -5,24 +5,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-import reduxConfig from "./redux";
 import {BrowserRouter} from "react-router-dom";
-import {PersistGate} from "redux-persist/integration/react";
-
-
-
-const {store,persistor} = reduxConfig();
+import store from "./store/Store";
+import "react-toastify/dist/ReactToastify.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-      <PersistGate loading ={null} persistor ={persistor}>
-          <BrowserRouter>
+      <BrowserRouter>
               <App />
-          </BrowserRouter>
-      </PersistGate>
+      </BrowserRouter>
   </Provider>
-
-
 
 );
 
